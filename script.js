@@ -64,12 +64,33 @@ showTime();
 
 
 
+function loadvideo() {
+	let video = document.querySelector("video");
+	video.volume = 0;
+	document.querySelector("video").play();
 
+	let vids = ["snowfall.mp4", "fall.mp4", "fireplace.mp4", "snow1.mp4", "water.mp4", "waterfall.mp4"];
+	vid = `video/${vids[Math.floor(Math.random() * vids.length)]}`;
+	video.setAttribute("src", vid)
+	video.load();
+}
+
+addEventListener("keydown", event => {
+	if (event.keyCode == 70) {
+		const div = document.querySelector("video");
+		if (div.requestFullscreen)
+			div.requestFullscreen();
+		else if (div.webkitRequestFullscreen)
+			div.webkitRequestFullscreen();
+		else if (div.msRequestFullScreen)
+			div.msRequestFullScreen();
+	}
+});
 
 $(document).ready(function () {
-	var audio = document.querySelector("video");
-	audio.volume = 0;
-	document.querySelector("video").play();
+	loadvideo();
+
+
 
 	pullRSS();
 
